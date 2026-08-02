@@ -1,0 +1,14 @@
+mkdocs
+pip
+python-dotenv
+ruff
+-e .
+
+pandas 
+sqlalchemy 
+pymysql
+
+matplotlib
+seaborn
+
+numpy

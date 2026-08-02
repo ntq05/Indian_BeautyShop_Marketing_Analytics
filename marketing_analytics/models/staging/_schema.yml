@@ -1,0 +1,85 @@
+version: 2
+
+models:
+  - name: stg_campaigns
+    description: "Staging model for the campaigns table."
+
+    tests:
+      - assert_funnel_logic:
+          upper_column: impressions
+          lower_column: clicks
+      - assert_funnel_logic:
+          upper_column: clicks
+          lower_column: leads
+      - assert_funnel_logic:
+          upper_column: leads
+          lower_column: conversions
+
+    columns:
+      - name: Campaign_ID
+        description: "Unique identifier for each campaign."
+        tests:
+          - not_null
+          - unique
+
+      - name: Brand
+        description: "(Nykaa, Purplle, Tira Beauty)"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Nykaa', 'Purplle', 'Tira Beauty']
+
+      - name: Campaign_Type
+        description: "(Social Media, Influencer, Festival, etc.)"
+        tests:
+          - not_null
+
+      - name: Channel_Used
+        description: "(Instagram, YouTube, Google Ads, etc.)"
+        tests:
+          - not_null
+
+      - name: Duration
+        description: "Time running of the campaign in days."
+        tests:
+          - not_null
+
+      - name: Campaign_Date
+        description: "Date when the campaign was launched."
+        tests:
+          - not_null
+
+      - name: Impressions
+        description: "Number of times the campaign was displayed to users."
+        tests:
+          - not_null
+          - assert_non_negative
+
+      - name: Clicks
+        description: "Number of times users clicked on the campaign."
+        tests:
+          - not_null
+          - assert_non_negative
+
+      - name: Leads
+        description: "Number of potential customers generated from the campaign."
+        tests:
+          - not_null
+          - assert_non_negative
+
+      - name: Conversions
+        description: "Number of users who completed the desired action (purchase, sign-up, etc.) from the campaign."
+        tests:
+          - not_null
+          - assert_non_negative
+
+      - name: Revenue
+        description: "Total revenue generated from the campaign."
+        tests:
+          - not_null
+          - assert_non_negative
+
+      - name: Acquisition_Cost
+        description: "Total cost incurred to acquire a customer through the campaign."
+        tests:
+          - not_null

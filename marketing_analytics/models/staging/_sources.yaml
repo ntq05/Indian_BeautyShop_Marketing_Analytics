@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: marketing_analytics
+    tables:
+      - name: campaigns
+        description: "Raw tables from the MySQL database for marketing campaigns."
