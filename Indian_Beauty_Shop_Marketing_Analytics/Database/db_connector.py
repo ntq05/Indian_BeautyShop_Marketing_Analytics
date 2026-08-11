@@ -20,10 +20,6 @@ class DatabaseConnector:
     def get_engine(self) -> Engine:
         if self._engine is None:
 
-            print("host =", repr(self.db_host))
-            print("user =", repr(self.db_user))
-            print("password =", repr(self.db_password))
-
             url = URL.create(
                 drivername="mysql+pymysql",
                 username=self.db_user,
