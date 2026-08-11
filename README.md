@@ -15,7 +15,7 @@ Currently, the primary dashboard module delivers a high-level overview of market
 * **Conversion Funnel & ROI Health:** Funnel conversion efficiency alongside campaign profitability categorization.
 * **Top & Bottom Performers:** Identification of high-ROI drivers vs. severe capital loss campaigns to guide automated stop-loss policies.
 
-![Executive Overview Dashboard](![Executive Overview Dashboard](Indian_Beauty_Shop_Marketing_Analytics/reports/figures/overview_dashboard.png))
+![Executive Overview Dashboard](Indian_Beauty_Shop_Marketing_Analytics/reports/figures/overview_dashboard.png)
 
 ---
 
