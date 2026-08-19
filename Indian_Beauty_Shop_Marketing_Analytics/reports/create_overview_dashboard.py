@@ -3,25 +3,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from Database.db_connector import DatabaseConnector
+from utils.add_header import add_chart_header
+from utils.format import format_compact
 
 db = DatabaseConnector()
 
 fct_campaign_kpis = db.query("SELECT * FROM fct_campaign_kpis")
 agg_brand_kpis = db.query("SELECT * FROM agg_brand_kpis")
-
-def format_compact(val):
-    if pd.isna(val) or not isinstance(val, (int, float)):
-        return val
-    abs_val = abs(val)
-
-    if abs_val >= 1e9:
-        return f"{val / 1e9:.1f} B"
-    elif abs_val >= 1e6:
-        return f"{val / 1e6:.1f} M"
-    elif abs_val >= 1e3:
-        return f"{val / 1e3:.1f} K"
-
-    return f"{val:.1f}"
 
 def format_volume(x):
     if x >= 1e9:
@@ -31,38 +19,6 @@ def format_volume(x):
     elif x >= 1e3:
         return f"{x*1e-3:.1f} K"
     return f"{int(x):,}"
-
-def add_chart_header(ax, title, subtitle, y_title=1.12, y_sub=1.03):
-    """Thêm Title (đậm, to) và Subtitle (nhỏ, xám) vào góc trên bên trái của Subplot.
-
-    - transform=ax.transAxes: Tọa độ theo % của subplot (0: mép trái/dưới, 1:
-    mép phải/trên)
-    """
-    # Title chính
-    ax.text(
-        0.0,
-        y_title,
-        title,
-        transform=ax.transAxes,
-        fontsize=12,
-        fontweight="bold",
-        color="#1a252f",
-        ha="left",
-        va="bottom",
-    )
-
-    # Subtitle phụ
-    ax.text(
-        0.0,
-        y_sub,
-        subtitle,
-        transform=ax.transAxes,
-        fontsize=10,
-        color="#555555",
-        style="italic",  # Có thể nghiêng hoặc không
-        ha="left",
-        va="bottom",
-    )
     
 
 total_revenue_3_shop = sum(agg_brand_kpis["total_revenue"])
